@@ -1,4 +1,6 @@
 import User from "../models/user.model.js";
+import bcryptjs from "bcryptjs";
+import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 export async function signup(req, res) {
   try {
@@ -36,36 +38,88 @@ export async function signup(req, res) {
         .json({ success: false, message: "Username is already existed!" });
     }
 
+    const salt = await bcryptjs.genSalt(10);
+
+    const hashedPassword = await bcryptjs.hash(password, salt);
+
     const PROFILE_PICS = ["/yellow.jpg", "/blue.jpg", "/red.jpg", "/octal.jpg"];
 
     const image = PROFILE_PICS[Math.floor(Math.random() * PROFILE_PICS.length)];
 
     const newUser = await User({
       email,
-      password,
+      password: hashedPassword,
       username,
       image,
     });
 
-    await newUser.save();
+    if (newUser) {
+      generateTokenAndSetCookie(newUser._id, res);
 
-    return res.status(201).json({
-      success: true,
-      user: {
-        ...newUser._doc,
-        password: "",
-      },
-      message: "User Registered!" + newUser.username,
-    });
+      await newUser.save();
+
+      return res.status(201).json({
+        success: true,
+        user: {
+          ...newUser._doc,
+          password: "",
+        },
+        message: "User Registered Success " + newUser.username,
+      });
+    } else {
+      return res.status(400).json({
+        success: false,
+        message: "Error in Registering User",
+      });
+    }
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
 }
 
 export async function login(req, res) {
-  res.status(200).json("Signup Control");
+  try {
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res
+        .status(400)
+        .json({ message: "Email and Password is Required!" });
+    }
+
+    const user = await User.findOne({ email: email });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid Credentials!" });
+    }
+
+    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
+
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Incorrect Password!" });
+    }
+
+    generateTokenAndSetCookie(user._id, res);
+
+    res.status(200).json({
+      success: true,
+      user: {
+        ...user._doc,
+        password: "",
+      },
+      message: "User LoggedIn Success",
+    });
+  } catch (error) {
+    res.status(400).json({ success: false, message: error.message });
+  }
 }
 
 export async function logout(req, res) {
-  res.status(200).json("Signup Control");
+  try {
+    res.clearCookie("jwt-movieplix");
+
+    res.status(200).json({ success: true, message: "Logged Out Success!" });
+  } catch (error) {
+    return res.status(400).json({ success: false, message: error.message });
+  }
 }

@@ -22,7 +22,7 @@ export async function signup(req, res) {
         .json({ success: false, message: "Password atleast 6 characters" });
     }
 
-    const existingUserByEmail = await User.findOne({ email: email });
+    const existingUserByEmail = await User.findOne({ email });
 
     if (existingUserByEmail) {
       return res
@@ -30,7 +30,7 @@ export async function signup(req, res) {
         .json({ success: false, message: "User email is already existed!" });
     }
 
-    const existingUserByUsername = await User.findOne({ username: username });
+    const existingUserByUsername = await User.findOne({ username });
 
     if (existingUserByUsername) {
       return res
@@ -64,7 +64,7 @@ export async function signup(req, res) {
           ...newUser._doc,
           password: "",
         },
-        message: "User Registered Success " + newUser.username,
+        message: "User Registered Success",
       });
     } else {
       return res.status(400).json({
@@ -87,13 +87,16 @@ export async function login(req, res) {
         .json({ message: "Email and Password is Required!" });
     }
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email });
 
     if (!user) {
       return res.status(400).json({ message: "Invalid Credentials!" });
     }
 
-    const isPasswordCorrect = await bcryptjs.compare(password, user.password);
+    const isPasswordCorrect = await bcryptjs.compare(
+      password,
+      user?.password || ""
+    );
 
     if (!isPasswordCorrect) {
       return res.status(400).json({ message: "Incorrect Password!" });
@@ -116,7 +119,7 @@ export async function login(req, res) {
 
 export async function logout(req, res) {
   try {
-    res.clearCookie("jwt-movieplix");
+    res.cookie("jwt-movieplix", "", { maxAge: 0 });
 
     res.status(200).json({ success: true, message: "Logged Out Success!" });
   } catch (error) {

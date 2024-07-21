@@ -1,31 +1,31 @@
 import { fetchFromTMDB } from "../services/tmdb.services.js";
 
-export async function getTrendingMovie(req, res) {
+export async function getTrendingTvShow(req, res) {
   try {
     const data = await fetchFromTMDB(
       "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
     );
 
-    const randomMovie =
+    const randomShow =
       data.results[Math.floor(Math.random() * data.results?.length)];
 
     res.status(200).json({
       success: true,
-      content: randomMovie,
+      content: randomShow,
     });
   } catch (error) {
     res
       .status(500)
-      .json({ message: "Internal Server Error in Get Trend Movie" });
+      .json({ message: "Internal Server Error in Get Trend Show" });
   }
 }
 
-export async function getMovieVideos(req, res) {
+export async function getTvVideos(req, res) {
   const { id } = req.params;
 
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}/videos?language=en-US`
     );
 
     res.status(200).json({
@@ -40,12 +40,12 @@ export async function getMovieVideos(req, res) {
   }
 }
 
-export async function getMovieDetails(req, res) {
+export async function getTvShowDetails(req, res) {
   const { id } = req.params;
 
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}?language=en-US`
+      `https://api.themoviedb.org/3/tv/${id}?language=en-US`
     );
 
     res.status(200).json({
@@ -60,12 +60,12 @@ export async function getMovieDetails(req, res) {
   }
 }
 
-export async function getSimilarMovies(req, res) {
+export async function getSimilarTvShows(req, res) {
   const { id } = req.params;
 
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${id}/similar?language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/${id}/similar?language=en-US&page=1`
     );
 
     res.status(200).json({
@@ -77,11 +77,11 @@ export async function getSimilarMovies(req, res) {
   }
 }
 
-export async function getMoviesByCategory(req, res) {
+export async function getTvShowsByCategory(req, res) {
   const { category } = req.params;
   try {
     const data = await fetchFromTMDB(
-      `https://api.themoviedb.org/3/movie/${category}?language=en-US&page=1`
+      `https://api.themoviedb.org/3/tv/${category}?language=en-US&page=1`
     );
 
     res.status(200).json({

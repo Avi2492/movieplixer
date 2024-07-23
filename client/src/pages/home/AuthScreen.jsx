@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../../components/Logo";
 import { RiArrowRightLine } from "@remixicon/react";
+import Footer from "../../components/Footer";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
@@ -194,6 +195,10 @@ const AuthScreen = () => {
             </div>
           </div>
         </div>
+
+        <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
+
+        <Footer />
       </div>
     </>
   );

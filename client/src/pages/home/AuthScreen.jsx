@@ -1,11 +1,17 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 import { RiArrowRightLine } from "@remixicon/react";
 import Footer from "../../components/Footer";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
+  const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    navigate("/signup?email=" + email);
+  };
   return (
     <>
       <div className="hero-bg relative h-screen">
@@ -29,11 +35,13 @@ const AuthScreen = () => {
           </p>
           <p className="text-lg mb-4">Watch anywhere. Cancel anytime.</p>
           <p className="mb-4">
-            Ready to watch? Enter your email to create or restart your
-            membership.
+            Ready to watch? Enter your email to create or restart your journey.
           </p>
 
-          <form className="flex flex-col md:flex-row gap-4 w-1/2">
+          <form
+            className="flex flex-col md:flex-row gap-4 w-1/2"
+            onSubmit={handleSubmit}
+          >
             <input
               type="email"
               className="p-2 rounded flex-1 bg-black/80 border border-gray-700"

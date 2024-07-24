@@ -2,9 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import {
   RiHeartFill,
-  RiLinkedinLine,
-  RiMailLine,
-  RiYoutubeLine,
+  // RiLinkedinLine,
+  // RiMailLine,
+  // RiYoutubeLine,
 } from "@remixicon/react";
 import Logo from "./Logo";
 
@@ -32,7 +32,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <div className="w-auto p-8">
+            {/* <div className="w-auto p-8">
               <div className="-m-1.5 flex flex-wrap">
                 <div className="w-auto p-1.5">
                   <Link to={"/"}>
@@ -56,7 +56,7 @@ const Footer = () => {
                   </Link>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </section>

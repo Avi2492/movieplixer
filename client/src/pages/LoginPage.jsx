@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Logo from "../components/Logo";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -12,8 +13,8 @@ const LoginPage = () => {
   return (
     <div className="h-screen w-full hero-bg">
       <header className="max-w-6xl mx-auto flex items-center justify-between p-4">
-        <Link to={"/"} className="w-52 text-orange-500 font-bold text-2xl">
-          MoviPlixer
+        <Link to={"/"}>
+          <Logo />
         </Link>
       </header>
       <div className="flex justify-center items-center mt-20 mx-3">

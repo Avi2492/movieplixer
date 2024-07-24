@@ -1,15 +1,24 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
+import { useAuthStore } from "../store/authUser.js";
 
 const SignUpPage = () => {
-  const [email, setEmail] = useState("");
+  const { searchParams } = new URL(document.location);
+  const emailValue = searchParams.get("email");
+
+  const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
+  // const [loading, setLoading] = useState(false);
+
+  const { signup } = useAuthStore();
 
   const handleSubmit = (e) => {
+    // setLoading(isSigningUp);
     e.preventDefault();
-    console.log(email, username, password);
+
+    signup({ email, username, password });
   };
   return (
     <div className="h-screen w-full hero-bg">
@@ -18,7 +27,7 @@ const SignUpPage = () => {
           <Logo />
         </Link>
       </header>
-      <div className="flex justify-center items-center mt-20 mx-3">
+      <div className="flex justify-center items-center mt-12 mx-3">
         <div className="w-full max-w-md p-8 space-y-6 bg-black/80 rounded-lg shadow-md">
           <h1 className="text-center text-white text-2xl font-bold mb-4">
             Sign Up

@@ -7,7 +7,7 @@ export default defineConfig({
   // server: {
   //   proxy: {
   //     "/api": {
-  //       target: String(import.meta.env.BACKEND_API),
+  //       target: "/",
   //     },
   //   },
   // },

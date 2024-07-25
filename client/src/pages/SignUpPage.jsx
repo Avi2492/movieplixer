@@ -10,15 +10,21 @@ const SignUpPage = () => {
   const [email, setEmail] = useState(emailValue || "");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const { signup } = useAuthStore();
 
-  const handleSubmit = (e) => {
-    // setLoading(isSigningUp);
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    signup({ email, username, password });
+    try {
+      await signup({ email, username, password });
+    } catch (error) {
+      console.error("Signup Failed", error);
+    } finally {
+      setLoading(false);
+    }
   };
   return (
     <div className="h-screen w-full hero-bg">
@@ -81,8 +87,11 @@ const SignUpPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600">
-              Sign Up
+            <button
+              className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600"
+              disabled={loading}
+            >
+              {loading ? "Loading..." : "Sign Up"}
             </button>
           </form>
           <p className="text-center text-gray-400">

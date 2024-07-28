@@ -126,3 +126,12 @@ export async function logout(req, res) {
     return res.status(400).json({ success: false, message: error.message });
   }
 }
+
+export async function authCheck(req, res) {
+  try {
+    const user = await User.findById(req.user._id).select("-password");
+    res.status(200).json({ success: true, user: user });
+  } catch (error) {
+    res.status(500).json({ success: false, message: error.message });
+  }
+}

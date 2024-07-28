@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from "react";
 import { useContentStore } from "../store/content.js";
 import axios from "axios";
@@ -8,11 +9,15 @@ const useGetTrendingContent = () => {
 
   useEffect(() => {
     const getTrendingContent = async () => {
-      const res = await axios.get(
-        `https://movidbapi.onrender.com/api/v1/${contentType}/trending`
-      );
+      try {
+        const res = await axios.get(
+          `https://movidbapi.onrender.com/api/v1/${contentType}/trending`
+        );
 
-      setTrendingContent(res.data.content);
+        setTrendingContent(res.data.content);
+      } catch (error) {
+        console.error("Error fetching trending content:", error);
+      }
     };
 
     getTrendingContent();

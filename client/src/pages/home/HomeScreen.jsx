@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 
 import Navbar from "../../components/Navbar.jsx";
 import { Link } from "react-router-dom";
 import { RiInformationLine, RiPlayLine } from "@remixicon/react";
 import useGetTrendingContent from "../../hooks/useGetTrendingContent.jsx";
+import { ORIGINAL_IMG_BASE_URL } from "../../utils/constants.js";
 
 const HomeScreen = () => {
   const { trendingContent } = useGetTrendingContent();
@@ -13,7 +15,7 @@ const HomeScreen = () => {
         <Navbar />
 
         <img
-          src="/assets/extraction.jpg"
+          src={ORIGINAL_IMG_BASE_URL + trendingContent?.backdrop_path}
           alt="hero-img"
           className="absolute top-0 left-0 w-full h-full object-cover -z-50"
         />

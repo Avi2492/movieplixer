@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser.js";
+import { RiLoader2Line } from "@remixicon/react";
 
 const SignUpPage = () => {
   const { searchParams } = new URL(document.location);
@@ -91,7 +92,16 @@ const SignUpPage = () => {
               className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600"
               disabled={loading}
             >
-              {loading ? "Loading..." : "Sign Up"}
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <RiLoader2Line
+                    className="animate-spin text-white text-center font-bold"
+                    size={25}
+                  />
+                </div>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </form>
           <p className="text-center text-gray-400">

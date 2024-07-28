@@ -22,7 +22,7 @@ const App = () => {
         <div className="flex justify-center items-center bg-black h-full">
           <RiLoader2Line
             className="animate-spin text-orange-500 font-bold"
-            size={80}
+            size={40}
           />
         </div>
       </div>

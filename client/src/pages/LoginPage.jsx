@@ -2,17 +2,25 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "../components/Logo";
 import { useAuthStore } from "../store/authUser.js";
+import { RiLoader2Line } from "@remixicon/react";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const { login } = useAuthStore();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
-    login({ email, password });
+    try {
+      await login({ email, password });
+    } catch (error) {
+      console.log(error);
+    }
+    setLoading(false);
   };
   return (
     <div className="h-screen w-full hero-bg">
@@ -60,8 +68,20 @@ const LoginPage = () => {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <button className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600">
-              Login
+            <button
+              className="w-full py-2 bg-orange-500 text-white font-semibold rounded-md hover:bg-orange-600"
+              disabled={loading}
+            >
+              {loading ? (
+                <div className="flex justify-center items-center">
+                  <RiLoader2Line
+                    className="animate-spin text-white text-center font-bold"
+                    size={25}
+                  />
+                </div>
+              ) : (
+                "Login here"
+              )}
             </button>
           </form>
           <p className="text-center text-gray-400">

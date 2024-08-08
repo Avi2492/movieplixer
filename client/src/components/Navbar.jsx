@@ -38,11 +38,14 @@ const Navbar = () => {
             >
               Tv Shows
             </Link>
-            <Link to={"/"} className="hover:underline">
+            <Link to={"/history"} className="hover:underline">
               Search History
             </Link>
-            <Link to={"/"} className="hover:underline">
+            <Link to={"/likes"} className="hover:underline">
               Watch List
+            </Link>
+            <Link to={"/subscription"} className="block p-2 hover:underline">
+              Subscription
             </Link>
           </div>
         </div>
@@ -51,11 +54,13 @@ const Navbar = () => {
           <Link to={"/"} className="hover:underline">
             <RiSearchLine size={20} className="cursor-pointer" />
           </Link>
-          <img
-            src={user.image}
-            alt="avatar"
-            className="h-8 rounded cursor-pointer"
-          />
+          <Link to={"/profile"}>
+            <img
+              src={user.image}
+              alt="avatar"
+              className="h-8 rounded cursor-pointer"
+            />
+          </Link>
           <RiLogoutBoxRLine
             size={20}
             onClick={logout}
@@ -79,11 +84,14 @@ const Navbar = () => {
             <Link to={"/"} className="block p-2 hover:underline">
               Tv Shows
             </Link>
-            <Link to={"/"} className="block p-2 hover:underline">
+            <Link to={"/history"} className="block p-2 hover:underline">
               Search History
             </Link>
-            <Link to={"/"} className="block p-2 hover:underline">
+            <Link to={"/likes"} className="block p-2 hover:underline">
               Watch List
+            </Link>
+            <Link to={"/subscription"} className="block p-2 hover:underline">
+              Subscription
             </Link>
           </div>
         )}

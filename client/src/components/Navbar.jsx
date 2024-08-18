@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { RiLogoutBoxRLine, RiMenuLine, RiSearchLine } from "@remixicon/react";
 import { useAuthStore } from "../store/authUser.js";
@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
 
         <div className="flex gap-2 items-center z-50">
-          <Link to={"/"} className="hover:underline">
+          <Link to={"/search"} className="hover:underline">
             <RiSearchLine size={20} className="cursor-pointer" />
           </Link>
           <Link to={"/profile"}>

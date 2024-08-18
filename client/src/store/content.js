@@ -1,5 +1,3 @@
-// tv and movie
-
 import { create } from "zustand";
 
 export const useContentStore = create((set) => ({

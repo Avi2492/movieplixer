@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import Navbar from "../../components/Navbar.jsx";
 import { Link } from "react-router-dom";
-import { RiInformationLine, RiLoader2Line, RiPlayLine } from "@remixicon/react";
+import { RiInformationLine, RiPlayLine } from "@remixicon/react";
 import useGetTrendingContent from "../../hooks/useGetTrendingContent.jsx";
 import {
   MOVIE_CATEGORIES,

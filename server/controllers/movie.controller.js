@@ -3,7 +3,7 @@ import { fetchFromTMDB } from "../services/tmdb.services.js";
 export async function getTrendingMovie(req, res) {
   try {
     const data = await fetchFromTMDB(
-      "https://api.themoviedb.org/3/trending/tv/day?language=en-US"
+      "https://api.themoviedb.org/3/trending/movie/day?language=en-US"
     );
 
     const randomMovie =
@@ -14,6 +14,7 @@ export async function getTrendingMovie(req, res) {
       content: randomMovie,
     });
   } catch (error) {
+    console.log(error.message);
     res
       .status(500)
       .json({ message: "Internal Server Error in Get Trend Movie" });

@@ -14,7 +14,8 @@ const useGetTrendingContent = () => {
 
         setTrendingContent(res.data.content);
       } catch (error) {
-        console.error("Error fetching trending content:", error);
+        throw new Error(error);
+        // console.error("Error fetching trending content:", error);
       }
     };
 

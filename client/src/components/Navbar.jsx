@@ -56,7 +56,7 @@ const Navbar = () => {
           </Link>
           <Link to={"/profile"}>
             <img
-              src={user.image}
+              src={user?.image}
               alt="avatar"
               className="h-8 rounded cursor-pointer"
             />

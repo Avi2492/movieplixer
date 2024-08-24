@@ -12,7 +12,6 @@ import {
 } from "../../utils/constants.js";
 import { useContentStore } from "../../store/content.js";
 import MovieSlider from "../../components/MovieSlider.jsx";
-import Footer from "../../components/Footer.jsx";
 
 const HomeScreen = () => {
   const { trendingContent } = useGetTrendingContent();
@@ -98,7 +97,6 @@ const HomeScreen = () => {
             ))}
       </div>
       <hr className="text-gray-700" />
-      <Footer />
     </>
   );
 };

@@ -11,6 +11,7 @@ import WatchPage from "./pages/WatchPage.jsx";
 import Footer from "./components/Footer.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import HistoryPage from "./pages/HistoryPage.jsx";
+import ErrorPage from "./pages/ErrorPage.jsx";
 
 const App = () => {
   const { user, isCheckingAuth, authCheck } = useAuthStore();
@@ -57,6 +58,7 @@ const App = () => {
           path="/history"
           element={user ? <HistoryPage /> : <Navigate to={"/login"} />}
         />
+        <Route path="/*" element={<ErrorPage />} />
       </Routes>
       <Toaster />
       <Footer />

@@ -1,10 +1,10 @@
 import cookieParser from "cookie-parser";
 import express from "express";
+import path from "path";
 import authRoutes from "./routes/auth.routes.js";
 import movieRoutes from "./routes/movie.routes.js";
 import tvRoutes from "./routes/tv.routes.js";
 import searchRoutes from "./routes/search.routes.js";
-// import wishlistRoutes from "./routes/wishlist.routes.js";
 
 import { protectRoute } from "./middlewares/protectRoute.js";
 import { ENV_VARS } from "./config/envVars.js";
@@ -12,6 +12,7 @@ import { connectToDb } from "./db/connectToDb.js";
 
 const app = express();
 const PORT = ENV_VARS.PORT;
+const __dirname = path.resolve();
 
 app.use(express.json());
 app.use(cookieParser());
@@ -20,7 +21,14 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/movie", protectRoute, movieRoutes);
 app.use("/api/v1/tv", protectRoute, tvRoutes);
 app.use("/api/v1/search", protectRoute, searchRoutes);
-// app.use("/api/v1/wishlist", protectRoute, wishlistRoutes);
+
+if (ENV_VARS.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "/client/dist")));
+
+  app.get("*", (req, res) => {
+    res.sendFile(path.resolve(__dirname, "client", "dist", "index.html"));
+  });
+}
 
 app.get("/", (req, res) => {
   res.status(200).json({ message: "Movieplix API is Running" });

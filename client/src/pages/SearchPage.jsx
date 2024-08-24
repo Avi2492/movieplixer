@@ -42,24 +42,30 @@ const SearchPage = () => {
         <div className="flex justify-center gap-3 mb-4">
           <button
             className={`py-2 px-4 rounded ${
-              active === "movie" ? "bg-orange-500 text-white" : "bg-gray-100"
-            } hover:bg-orange-600 hover:text-white`}
+              active === "tv"
+                ? "bg-orange-500 text-white"
+                : "bg-gray-100 text-orange-500"
+            } hover:bg-orange-600 text-white`}
             onClick={() => handleTabClick("movie")}
           >
             Movies
           </button>
           <button
             className={`py-2 px-4 rounded ${
-              active === "tv" ? "bg-orange-500" : "bg-gray-100"
-            } hover:bg-orange-600 hover:text-white`}
+              active === "tv"
+                ? "bg-orange-500 text-white"
+                : "bg-gray-100 text-orange-500"
+            } hover:bg-orange-600 text-white`}
             onClick={() => handleTabClick("tv")}
           >
             TV Shows
           </button>
           <button
             className={`py-2 px-4 rounded ${
-              active === "person" ? "bg-orange-500" : "bg-gray-100"
-            } hover:bg-orange-600 hover:text-white`}
+              active === "tv"
+                ? "bg-orange-500 text-white"
+                : "bg-gray-100 text-orange-500"
+            } hover:bg-orange-600 text-white`}
             onClick={() => handleTabClick("person")}
           >
             Person

@@ -1,8 +1,9 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Logo from "../../components/Logo";
 import { RiArrowRightLine } from "@remixicon/react";
-import Footer from "../../components/Footer";
+import Footer from "../../components/Footer.jsx";
 
 const AuthScreen = () => {
   const [email, setEmail] = useState("");
@@ -14,7 +15,7 @@ const AuthScreen = () => {
   };
   return (
     <>
-      <div className="hero-bg relative h-screen">
+      <div className="hero-bg h-screen relative">
         <div className="px-4 py-4">
           <header className="max-w-6xl mx-auto flex items-center justify-between">
             <Link to={"/"}>
@@ -56,6 +57,7 @@ const AuthScreen = () => {
             </button>
           </form>
         </div>
+
         <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
 
         <div className="py-10 bg-black text-white">
@@ -205,6 +207,7 @@ const AuthScreen = () => {
         </div>
 
         <div className="h-2 w-full bg-[#232323]" aria-hidden="true" />
+        <Footer />
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import React from "react";
 import { RiArrowLeftLine } from "@remixicon/react";
 import Navbar from "../components/Navbar";
+// import Footer from "../components/Footer";
 
 const ErrorPage = () => {
   return (
@@ -44,6 +45,7 @@ const ErrorPage = () => {
           </div>
         </div>
         <hr />
+        {/* <Footer /> */}
       </div>
     </>
   );

@@ -8,6 +8,8 @@ import ReactPlayer from "react-player";
 import { formatReleaseDate } from "../utils/dateFunction";
 import { SMALL_IMG_BASE_URL } from "../utils/constants";
 import WatchPageSkeleton from "../components/skeltons/WatchPageSkeleton";
+import Footer from "../components/Footer";
+import ErrorPage from "./ErrorPage";
 
 const WatchPage = () => {
   const { id } = useParams();
@@ -113,7 +115,7 @@ const WatchPage = () => {
           <Navbar />
           <div className="text-center mx-auto px-4 py-8 h-full mt-40">
             <h2 className="text-2xl sm:text-5xl font-bold text-balance">
-              Content not found 😥
+              <ErrorPage />
             </h2>
           </div>
         </div>
@@ -122,7 +124,7 @@ const WatchPage = () => {
   }
 
   return (
-    <div className="bg-black text-orange-500 min-h-screen">
+    <div className="bg-black text-white min-h-screen">
       <div className="mx-auto container px-4 h-full py-4">
         <Navbar />
 
@@ -235,6 +237,7 @@ const WatchPage = () => {
           </div>
         )}
       </div>
+      <Footer />
     </div>
   );
 };

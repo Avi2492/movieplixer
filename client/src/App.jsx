@@ -8,7 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/authUser.js";
 import { RiLoader2Line } from "@remixicon/react";
 import WatchPage from "./pages/WatchPage.jsx";
-import Footer from "./components/Footer.jsx";
+// import Footer from "./components/Footer.jsx";
 import SearchPage from "./pages/SearchPage.jsx";
 import HistoryPage from "./pages/HistoryPage.jsx";
 import ErrorPage from "./pages/ErrorPage.jsx";
@@ -60,8 +60,8 @@ const App = () => {
         />
         <Route path="/*" element={<ErrorPage />} />
       </Routes>
+      {/* <Footer /> */}
       <Toaster />
-      <Footer />
     </>
   );
 };

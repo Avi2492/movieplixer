@@ -37,7 +37,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="bg-black sm:h-screen md:h-screen">
+    <>
       <div className="bg-black h-screen text-white">
         <Navbar />
         <div className="container mx-auto px-4 py-8">
@@ -89,7 +89,7 @@ const SearchPage = () => {
             </button>
           </form>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 overflow-y-scroll scrollbar-hide">
             {results.map((result) => {
               if (!result.poster_path && !result.profile_path) return null;
 
@@ -128,7 +128,7 @@ const SearchPage = () => {
         </div>
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

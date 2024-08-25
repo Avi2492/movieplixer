@@ -32,7 +32,7 @@ Welcome to the **Movie Watching Web App** repository! This project is a feature-
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/your-username/movie-watching-app.git
+   git clone https://github.com/Avi2492/movieplixer.git
    cd movie-watching-app
    ```
 

@@ -37,7 +37,7 @@ const SearchPage = () => {
   };
 
   return (
-    <div className="bg-black">
+    <div className="bg-black sm:h-screen md:h-screen">
       <div className="bg-black h-screen text-white">
         <Navbar />
         <div className="container mx-auto px-4 py-8">

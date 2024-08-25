@@ -53,7 +53,7 @@ const HistoryPage = () => {
     );
   }
   return (
-    <div className="bg-black">
+    <div className="bg-black sm:h-screen md:h-screen">
       <div className="bg-black text-white h-screen">
         <Navbar />
         <div className="max-w-6xl mx-auto px-4 py-8">
